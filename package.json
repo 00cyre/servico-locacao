@@ -4,8 +4,8 @@
   "description": "Microserviço de locação para o teste tecnico Eteg",
   "main": "index.js",
   "scripts": {
-    "sequelize" : "initializeSequelize.bat",
-    "start": "node ./src/index.js"
+    "start": "initializeSequelize.bat & node ./src/index.js",
+    "quickstart": "nodemon --inspect ./src/index.js"
   },
   "repository": {
     "type": "git",
@@ -22,6 +22,7 @@
     "express": "^4.17.1",
     "lodash": "^4.17.15",
     "mysql2": "^2.1.0",
+    "nodemon": "^2.0.2",
     "sequelize": "^5.21.5"
   }
 }

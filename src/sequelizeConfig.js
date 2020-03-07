@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 const conexaoDB = {
   conexao: {
-    host: 'localhost:3306',
+    host: 'localhost',
     dialect: 'mysql',
     pool: {
       max: 10,

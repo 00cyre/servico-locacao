@@ -1,28 +1,41 @@
 const _ = require('lodash');
 
 class BaseController {
-  constructor(modelReferencia) {
-    this.modelReferencia = modelReferencia;
+  constructor(referenceModel) {
+    this.referenceModel = referenceModel;
   }
 
-  setModelReferencia(model) {
-    this.modelReferencia = model;
+  async insert(objInsert, transaction = null) {
+    try {
+      return await this.referenceModel.create(
+        {
+          ...objInsert
+        },
+        transaction
+      );
+    } catch (error) {
+      throw new Error('Error insert() - baseController');
+    }
+  }
+  async getById(id, options = {}) {
+    try {
+      return await this.referenceModel.findByPk(Number(id), {
+        ...options
+      });
+    } catch (error) {
+      console.log(error);
+      throw new Error('Error getById() - baseController');
+    }
   }
 
-  async insere(objetoInserir, transaction = null) {
-      
-  }
-  async retornaPeloId(id, options = {}) {
-  }
-
-  async retornaPorFiltro(filter) {
+  async getByFilter(filter) {
   }     
   
 
-  async atualiza(nomeCampoId, id, objetoAlterar,  transaction = null) {
+  async update(nomeCampoId, id, objetoAlterar,  transaction = null) {
    }
 
-  async exclui(queryExcluir, transaction = null) {
+  async delete(queryExcluir, transaction = null) {
   }
 }
 
