@@ -13,13 +13,21 @@ class MoviesController {
       throw new Error('Error while trying to insert into Movies')
     }
   }
-  async getMovieById(IdMovie) {
+  async getMovieById(idMovie) {
     try {
-      const movieObject = await this.baseController.getById(IdMovie);
+      const movieObject = await this.baseController.getById(idMovie);
       return movieObject ? { status: 200, data: movieObject } : { status: 404, data: undefined };
     } catch (error) {
-      console.log(error);
       throw new Error('Error while trying to get Movies');
+    }
+  }
+  async deleteMovieById(idMovie)
+  {
+    try {
+      await this.baseController.delete(idMovie);
+      return true;
+    } catch (error) {
+      throw new Error('Error while trying to delete Movies');
     }
   }
 

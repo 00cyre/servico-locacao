@@ -33,9 +33,39 @@ class BaseController {
   
 
   async update(nomeCampoId, id, objetoAlterar,  transaction = null) {
+    try {
+      await this.modelReferencia.update(
+        { ...objetoAlterar, UsuarioAlteracao: usuarioAlteracao },
+        transaction
+          ? {
+              where: { [nomeCampoId]: id },
+              transaction,
+              validate: true,
+              individualHooks: true
+            }
+          : {
+              where: { [nomeCampoId]: id }
+            }
+      );
+      return await this.retornaPeloId(id);
+    } catch (error) {
+      throw new Error('Erro atualiza() - baseController');
+    }
    }
 
-  async delete(queryExcluir, transaction = null) {
+  async delete(idMovie, transaction = null) {
+    try {
+      let res = await this.referenceModel.destroy(
+        {
+          where:{
+            Id: idMovie
+          }
+        }
+      );
+      return res
+    } catch (error) {
+      throw new Error('Erro exclui() - baseController');
+    }
   }
 }
 
