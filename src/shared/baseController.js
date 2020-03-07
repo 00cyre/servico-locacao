@@ -34,8 +34,8 @@ class BaseController {
 
   async update(nomeCampoId, id, objetoAlterar,  transaction = null) {
     try {
-      await this.modelReferencia.update(
-        { ...objetoAlterar, UsuarioAlteracao: usuarioAlteracao },
+      await this.referenceModel.update(
+        { ...objetoAlterar },
         transaction
           ? {
               where: { [nomeCampoId]: id },
@@ -49,11 +49,11 @@ class BaseController {
       );
       return await this.retornaPeloId(id);
     } catch (error) {
-      throw new Error('Erro atualiza() - baseController');
+      throw new Error('Error update() - baseController');
     }
    }
 
-  async delete(idMovie, transaction = null) {
+  async delete(idMovie) {
     try {
       let res = await this.referenceModel.destroy(
         {

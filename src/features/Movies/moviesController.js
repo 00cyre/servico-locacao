@@ -8,9 +8,19 @@ class MoviesController {
   async insertMovie(movieObj)
   {
     try {
-      
+      await this.baseController.insert(movieObj);
+      return true;
     } catch (error) {
       throw new Error('Error while trying to insert into Movies')
+    }
+  }
+  async updateMovie(id,movieObj)
+  {
+    try {
+      let res = await this.baseController.update('Id',id,movieObj);
+      return res
+    } catch (error) {
+      throw new Error('Error while trying to update Movies')
     }
   }
   async getMovieById(idMovie) {
@@ -30,6 +40,7 @@ class MoviesController {
       throw new Error('Error while trying to delete Movies');
     }
   }
+
 
 }
 module.exports = new MoviesController();

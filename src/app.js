@@ -15,7 +15,7 @@ class App {
       next();
     });
 
-    this.express.use('/', express.Router(), moviesRoute);
+    this.express.use('/filmes', express.Router(), moviesRoute);
     //this.express.use('/locacao', express.Router(), locacaoRoute);
     //this.express.use('/historico', express.Router(), historicoRoute);
     //this.express.use('/usuario', express.Router(), usuarioRoute);
