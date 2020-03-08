@@ -2,9 +2,23 @@
 ## Requerimentos:
 Liquibase
 Mysql
+Windows 10
+Postman
+Node.JS
 
 ## Recursos
 #### Collection do Postman: 
+
+## Setup
+### Para configurar eu fiz um script que roda todos os comandos na ordem certa pra funcionar corretamente, porem o mysql já tem que estar configurado, e ele tem que ter o schema feito.
+````sql
+  create schema Locacao
+````
+### Apos criar o Schema execute o comando
+````
+  npm run initialize
+````
+### Ele irá executar todos os comandos necessarios para configurar o ambiente e inicializar o serviço.
 
 # Introdução
 #### Devido a questão do tempo, e da minha maquina não ter tudo instalado, decidi não utilizar o docker nesse projeto. Porém em vias normais utilizaria o docker para executar o banco e o micro-serviço pois seria mais facil essa parte de configuração, e seria o ideal visando em publicação para escalonamento do ms.Mas como só vou executar esse projeto uma vez por maquina e não será mais atualizado nem terá manutenção decidi não utilizar
