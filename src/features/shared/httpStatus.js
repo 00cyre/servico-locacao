@@ -1,51 +1,42 @@
-const deleteEntry = (Id,isSuccessful)=>
-{
-    if(isSuccessful)
-    {
-        return { status: 204, message: `Successfully deleted ${Id}` }
+class HttpStatus {
+    constructor(featureName) {
+        this.featureName = featureName;
     }
-    else
-    {
-        throw{ status: 500, message: 'Error while trying to delete Movies ' }
+
+    deleteEntry = (Id, isSuccessful) => {
+        if (isSuccessful) {
+            return { status: 204, message: `Successfully deleted ${Id}` }
+        }
+        else {
+            throw { status: 500, message: `Error while trying to delete ${this.featureName} ` }
+        }
     }
-}
-const getEntry = (data,isSuccessful)=>
-{
-    if(isSuccessful)
-    {
-        return { status: 200, data: data }
+    getEntry = (data, isSuccessful) => {
+        if (isSuccessful) {
+            return { status: 200, data: data }
+        }
+        else {
+            throw { status: data.status, message: `Couldn't get ${this.featureName} \n ${data.message}` }
+        }
     }
-    else
-    {
-        throw{ status: data.status, message: `Couldn't get Movies \n ${data.message}` }
+    updateEntry = (data, isSuccessful) => {
+        if (isSuccessful) {
+            return { status: 200, data: data }
+        }
+        else {
+            throw { status: 500, message: `Error while trying to update ${this.featureName} \n ${data.message}` }
+        }
     }
-}
-const updateEntry = (data,isSuccessful)=>
-{
-    if(isSuccessful)
-    {
-        return { status: 200, data: data }
-    }
-    else
-    {
-        throw{ status: 500, message: `Error while trying to update Movies \n ${data.message}` }
-    }
-}
-const insertEntry = (data,isSuccessful)=>
-{
-    if(isSuccessful)
-    {
-        return { status: 200, data: data }
-    }
-    else
-    {
-        throw { status: 500, message: `Error while trying to insert into Movies \n ${data.message}` }
+    insertEntry = (data, isSuccessful) => {
+        if (isSuccessful) {
+            return { status: 200, data: data }
+        }
+        else {
+            throw { status: 500, message: `Error while trying to insert into ${this.featureName} \n ${data.message}` }
+        }
     }
 }
 
-module.exports = {
-    insertEntry,
-    updateEntry,
-    getEntry,
-    deleteEntry
-}
+
+
+module.exports = HttpStatus;
