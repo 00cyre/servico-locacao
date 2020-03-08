@@ -1,20 +1,18 @@
 const BaseController = require('../../shared/baseController');
 const { UsersModel } = require('./index');
 const _ = require('lodash');
-const { insertEntry,
-  updateEntry,
-  getEntry,
-  deleteEntry } = require('../shared/httpStatus')
+const HttpStatus = require('../shared/httpStatus')
 class UsersController {
   constructor() {
     this.baseController = new BaseController(UsersModel);
+    this.httpStatus = new HttpStatus('Users')
   }
   async insertUser(userObj) {
     try {
       let userObject = await this.baseController.insert(userObj);
-      return insertEntry(userObject, true);
+      return this.httpStatus.insertEntry(userObject, true);
     } catch (error) {
-      throw insertEntry(error, false)
+      throw this.httpStatus.insertEntry(error, false)
     }
   }
   async updateUser(id, userObj) {
@@ -23,27 +21,27 @@ class UsersController {
       if(isDeleted)
       {
         let userObject = await this.baseController.update('Id', id, userObj);
-        return updateEntry(userObject, true);
+        return this.httpStatus.updateEntry(userObject, true);
       }
       throw new Error("Not Found")
     } catch (error) {
-      throw updateEntry(error, false)
+      throw this.httpStatus.updateEntry(error, false)
     }
   }
   async getUserById(idUser) {
     try {
       let userObject = await this.baseController.getById(idUser);
-      return getEntry(userObject,true)
+      return this.httpStatus.getEntry(userObject,true)
     } catch (error) {
-      throw getEntry(error,false)
+      throw this.httpStatus.getEntry(error,false)
     }
   }
   async deleteUserById(idUser) {
     try {
       let userObject = await this.baseController.delete(idUser);
-      return deleteEntry(userObject, true);
+      return this.httpStatus.deleteEntry(userObject, true);
     } catch (error) {
-      throw deleteEntry(error, false)
+      throw this.httpStatus.deleteEntry(error, false)
     }
   }
 
