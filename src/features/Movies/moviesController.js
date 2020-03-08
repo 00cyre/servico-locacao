@@ -1,20 +1,19 @@
 const BaseController = require('../../shared/baseController');
 const { MoviesModel } = require('./index');
 const _ = require('lodash');
-const { insertEntry,
-  updateEntry,
-  getEntry,
-  deleteEntry } = require('../shared/httpStatus')
+const HttpStatus = require('../shared/httpStatus')
 class MoviesController {
   constructor() {
+
     this.baseController = new BaseController(MoviesModel);
+    this.httpStatus = new HttpStatus('Movies');
   }
   async insertMovie(movieObj) {
     try {
       let movieObject = await this.baseController.insert(movieObj);
-      return insertEntry(movieObject, true);
+      return this.httpStatus.insertEntry(movieObject, true);
     } catch (error) {
-      throw insertEntry(error, false)
+      throw this.httpStatus.insertEntry(error, false)
     }
   }
   async updateMovie(id, movieObj) {
@@ -23,27 +22,27 @@ class MoviesController {
       if(isDeleted)
       {
         let movieObject = await this.baseController.update('Id', id, movieObj);
-        return updateEntry(movieObject, true);
+        return this.httpStatus.updateEntry(movieObject, true);
       }
       throw new Error("Not Found")
     } catch (error) {
-      throw updateEntry(error, false)
+      throw this.httpStatus.updateEntry(error, false)
     }
   }
   async getMovieById(idMovie) {
     try {
       let movieObject = await this.baseController.getById(idMovie);
-      return getEntry(movieObject,true)
+      return this.httpStatus.getEntry(movieObject,true)
     } catch (error) {
-      throw getEntry(error,false)
+      throw this.httpStatus.getEntry(error,false)
     }
   }
   async deleteMovieById(idMovie) {
     try {
       let movieObject = await this.baseController.delete(idMovie);
-      return deleteEntry(movieObject, true);
+      return this.httpStatus.deleteEntry(movieObject, true);
     } catch (error) {
-      throw deleteEntry(error, false)
+      throw this.httpStatus.deleteEntry(error, false)
     }
   }
 
