@@ -32,22 +32,22 @@ class BaseController {
   }     
   
 
-  async update(nomeCampoId, id, objetoAlterar,  transaction = null) {
+  async update(idFieldName, id, changeObj,  transaction = null) {
     try {
       await this.referenceModel.update(
-        { ...objetoAlterar },
+        { ...changeObj },
         transaction
           ? {
-              where: { [nomeCampoId]: id },
+              where: { [idFieldName]: id },
               transaction,
               validate: true,
               individualHooks: true
             }
           : {
-              where: { [nomeCampoId]: id }
+              where: { [idFieldName]: id }
             }
       );
-      return await this.retornaPeloId(id);
+      return await this.getById(id);
     } catch (error) {
       throw new Error('Error update() - baseController');
     }

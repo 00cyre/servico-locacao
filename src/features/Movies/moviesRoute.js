@@ -19,9 +19,11 @@ class MoviesRoute {
   async updateMovie(req,res)
   {
     try {
-      
+      let response = await moviesController.updateMovie(req.params.idMovie,req.body)
+      res.status(response.status).json(response.data);
+
     } catch (error) {
-      
+      res.status(500).send(error.message);
     }
   }
   async deleteMovieById(req,res){
@@ -37,7 +39,7 @@ class MoviesRoute {
     console.log('chegou')
     this.moviesRoute.get('/api/v1/movies/:idMovie', this.getMovieById);
     this.moviesRoute.delete('/api/v1/movies/:idMovie',this.deleteMovieById)
-    this.moviesRoute.put('/api/v1/movies/:idMovie',validateBodyMovie,this.updateMovie)
+    this.moviesRoute.put('/api/v1/movies/:idMovie',this.updateMovie)
   }
 }
 

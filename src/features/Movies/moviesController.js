@@ -17,8 +17,8 @@ class MoviesController {
   async updateMovie(id,movieObj)
   {
     try {
-      let res = await this.baseController.update('Id',id,movieObj);
-      return res
+      let movieObject = await this.baseController.update('Id',id,movieObj);
+      return movieObject ? { status: 200, data: movieObject } : { status: 404, data: undefined };
     } catch (error) {
       throw new Error('Error while trying to update Movies')
     }

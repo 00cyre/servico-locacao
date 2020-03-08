@@ -1,13 +1,16 @@
 const express = require('express');
 const { moviesRoute } = require('./Routes');
-
+const bodyParser = require('body-parser');
 class App {
   constructor() {
     this.express = express();
-    this.montarRotas();
+    this.setupRoutes();
   }
 
-  montarRotas() {
+  setupRoutes() {
+    
+    this.express.use(bodyParser.json());
+    this.express.use(bodyParser.urlencoded({ extended: true }));
     this.express.use((req, res, next) => {
       res.header('Access-Control-Allow-Origin', '*');
       res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
