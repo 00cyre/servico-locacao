@@ -14,19 +14,45 @@ const MoviesModel = sequelizeConfig.define(
       type: Sequelize.STRING(50),
       required: true,
       allowNull: false,
+      validate: {
+        notEmpty:
+        {
+          msg: "The Field Nome does not accept a NULL value"
+        }
+      }
     },
     Genero: {
       type: Sequelize.STRING(50),
       required: true,
       allowNull: false,
+      validate: {
+        notEmpty:
+        {
+          msg: "The Field Genero does not accept a NULL value"
+        }
+      }
     },
     Diretor: {
       type: Sequelize.STRING(50),
       required: true,
       allowNull: false,
+      validate: {
+        notEmpty:
+        {
+          msg: "The Field Director does not accept a NULL value"
+        }
+      }
     },
     Quantidade: {
       type: Sequelize.INTEGER,
+      required: true,
+      allowNull: false,
+      validate: {
+        notEmpty:
+        {
+          msg: "The Field Quantidade does not accept a NULL value"
+        }
+      }
     }
   },
   {

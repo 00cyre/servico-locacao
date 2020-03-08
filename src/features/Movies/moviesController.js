@@ -1,43 +1,49 @@
 const BaseController = require('../../shared/baseController');
 const { MoviesModel } = require('./index');
 const _ = require('lodash');
+const { insertEntry,
+  updateEntry,
+  getEntry,
+  deleteEntry } = require('../shared/httpStatus')
 class MoviesController {
   constructor() {
     this.baseController = new BaseController(MoviesModel);
   }
-  async insertMovie(movieObj)
-  {
+  async insertMovie(movieObj) {
     try {
-      await this.baseController.insert(movieObj);
-      return true;
+      let movieObject = await this.baseController.insert(movieObj);
+      return insertEntry(movieObject, true);
     } catch (error) {
-      throw new Error('Error while trying to insert into Movies')
+      throw insertEntry(error, false)
     }
   }
-  async updateMovie(id,movieObj)
-  {
+  async updateMovie(id, movieObj) {
     try {
-      let movieObject = await this.baseController.update('Id',id,movieObj);
-      return movieObject ? { status: 200, data: movieObject } : { status: 404, data: undefined };
+      let isDeleted = await this.baseController.getById(id);
+      if(isDeleted)
+      {
+        let movieObject = await this.baseController.update('Id', id, movieObj);
+        return updateEntry(movieObject, true);
+      }
+      throw new Error("Not Found")
     } catch (error) {
-      throw new Error('Error while trying to update Movies')
+      throw updateEntry(error, false)
     }
   }
   async getMovieById(idMovie) {
     try {
-      const movieObject = await this.baseController.getById(idMovie);
-      return movieObject ? { status: 200, data: movieObject } : { status: 404, data: undefined };
+      let movieObject = await this.baseController.getById(idMovie);
+      return getEntry(movieObject,true)
     } catch (error) {
-      throw new Error('Error while trying to get Movies');
+      throw getEntry(error,false)
     }
   }
-  async deleteMovieById(idMovie)
-  {
+  async deleteMovieById(idMovie) {
     try {
-      await this.baseController.delete(idMovie);
-      return true;
+      let movieObject = await this.baseController.delete(idMovie);
+      return deleteEntry(movieObject, true);
     } catch (error) {
-      throw new Error('Error while trying to delete Movies');
+      throw deleteEntry(error, false)
     }
   }
 

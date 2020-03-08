@@ -14,7 +14,7 @@ class BaseController {
         transaction
       );
     } catch (error) {
-      throw new Error('Error insert() - baseController');
+      throw new Error(error);
     }
   }
   async getById(id, options = {}) {
@@ -23,8 +23,7 @@ class BaseController {
         ...options
       });
     } catch (error) {
-      console.log(error);
-      throw new Error('Error getById() - baseController');
+      throw new Error(error);
     }
   }
 
@@ -49,7 +48,7 @@ class BaseController {
       );
       return await this.getById(id);
     } catch (error) {
-      throw new Error('Error update() - baseController');
+      throw new Error(error);
     }
    }
 
@@ -64,7 +63,7 @@ class BaseController {
       );
       return res
     } catch (error) {
-      throw new Error('Erro exclui() - baseController');
+      throw new Error(error);
     }
   }
 }

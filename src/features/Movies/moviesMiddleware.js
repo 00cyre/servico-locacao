@@ -1,8 +1,8 @@
 const validateBodyMovie = (req,res,next) =>{
     try {
-        next();       
+
+            next();
     } catch (error) {
-        
     }
 }
 module.exports = {
