@@ -2,7 +2,6 @@
 ## Requerimentos:
 Liquibase
 Mysql
-Postman
 
 ## Recursos
 #### Collection do Postman: 
@@ -18,3 +17,4 @@ Postman
 
 #### Eu poderia ao invés de utilizar essa validação por isSuccessful, tratar o codigo de resposta baseado no que o meu controller base me retorna.
 #### Já que o Liquibase retorna o tipo de exceção no meu validation, eu poderia ter feito uma classe melhor de tratamento
+
