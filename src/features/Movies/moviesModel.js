@@ -53,6 +53,25 @@ const MoviesModel = sequelizeConfig.define(
           msg: "The Field Quantidade does not accept a NULL value"
         }
       }
+    },
+    createdAt:
+    {
+      type: Sequelize.DATE,
+      required:false,
+      allowNull:true,
+    },
+    updatedAt:
+    {
+      type: Sequelize.DATE,
+      required:false,
+      allowNull:true,
+      defaultValue:Sequelize.fn("NOW"),
+    },
+    deletedAt:
+    {
+      type: Sequelize.DATE,
+      required:false,
+      allowNull:true,
     }
   },
   {

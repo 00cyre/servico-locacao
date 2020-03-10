@@ -1,23 +1,31 @@
-<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
-  <changeSet id="cria_tabela_filmes" author="bertod777@gmail.com">
-    <createTable tableName="movies">
-        <column name="Id" type="int" autoIncrement="true">
-          <constraints primaryKey="true" nullable="false"/>
-        </column>
-        <column name="Nome" type="VARCHAR(50)">
-            <constraints nullable="false"/>
-        </column>
-        <column name="Genero" type="VARCHAR(50)"/>
-        <column name="Diretor" type="VARCHAR(50)">
-            <constraints nullable="false"/>
-        </column>
-        <column name="Quantidade" type="int">
-            <constraints nullable="false"/>
-        </column>
-    </createTable>
-  </changeSet>
-  <changeSet id="tag-1.0" author="bertod777@gmail.com">
-    <tagDatabase tag="1.0" />
-  </changeSet>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+	<changeSet id="cria_tabela_filmes" author="bertod777@gmail.com">
+		<createTable tableName="movies">
+			<column name="Id" type="int" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="Nome" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="Genero" type="VARCHAR(50)" />
+			<column name="Diretor" type="VARCHAR(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="Quantidade" type="int">
+				<constraints nullable="false" />
+			</column>
+			<column name="createdAt" type="DATE">
+				<constraints nullable="true" />
+			</column>
+			<column name="updatedAt" type="DATE">
+				<constraints nullable="false" />
+			</column>
+			<column name="deletedAt" type="DATE">
+				<constraints nullable="true" />
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet id="tag-1.0" author="bertod777@gmail.com">
+		<tagDatabase tag="1.0" />
+	</changeSet>
 </databaseChangeLog>

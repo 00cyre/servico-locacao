@@ -28,6 +28,26 @@ const RentalModel = sequelizeConfig.define(
       type: Sequelize.DATE,
       required: false,
       allowNull: true,
+      defaultValue:null,
+    },    
+    createdAt:
+    {
+      type: Sequelize.DATE,
+      required:false,
+      allowNull:true,
+    },
+    updatedAt:
+    {
+      type: Sequelize.DATE,
+      required:false,
+      allowNull:true,
+      defaultValue:Sequelize.fn("NOW"),
+    },
+    deletedAt:
+    {
+      type: Sequelize.DATE,
+      required:false,
+      allowNull:true,
     }
   },
   {

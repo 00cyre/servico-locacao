@@ -53,6 +53,25 @@ const UsersModel = sequelizeConfig.define(
           msg: "The Field DataNascimento does not accept a NULL value"
         }
       }
+    },
+    createdAt:
+    {
+      type: Sequelize.DATE,
+      required:false,
+      allowNull:true,
+    },
+    updatedAt:
+    {
+      type: Sequelize.DATE,
+      required:false,
+      allowNull:true,
+      defaultValue:Sequelize.fn("NOW"),
+    },
+    deletedAt:
+    {
+      type: Sequelize.DATE,
+      required:false,
+      allowNull:true,
     }
   },
   {
