@@ -28,35 +28,41 @@ class BaseController {
   }
 
   async getByFilter(filter) {
-  }     
-  
+    try {
+      const res = await this.referenceModel.findAll(filter);
+      return res
+    } catch (error) {
+      throw new Error('Erro retornaPorFiltro() - baseController');
+    }
+  }
 
-  async update(idFieldName, id, changeObj,  transaction = null) {
+
+  async update(idFieldName, id, changeObj, transaction = null) {
     try {
       await this.referenceModel.update(
         { ...changeObj },
         transaction
           ? {
-              where: { [idFieldName]: id },
-              transaction,
-              validate: true,
-              individualHooks: true
-            }
+            where: { [idFieldName]: id },
+            transaction,
+            validate: true,
+            individualHooks: true
+          }
           : {
-              where: { [idFieldName]: id }
-            }
+            where: { [idFieldName]: id }
+          }
       );
       return await this.getById(id);
     } catch (error) {
       throw new Error(error);
     }
-   }
+  }
 
   async delete(idMovie) {
     try {
       let res = await this.referenceModel.destroy(
         {
-          where:{
+          where: {
             Id: idMovie
           }
         }

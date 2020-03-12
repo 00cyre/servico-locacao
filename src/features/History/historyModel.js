@@ -1,8 +1,8 @@
 const Sequelize = require("sequelize");
 const { sequelizeConfig } = require("../../sequelizeConfig");
 
-const RentalModel = sequelizeConfig.define(
-  "Rental",
+const HistoryModel = sequelizeConfig.define(
+  "History",
   {
     Id: {
       type: Sequelize.INTEGER,
@@ -20,16 +20,23 @@ const RentalModel = sequelizeConfig.define(
     UserId: {
       type: Sequelize.INTEGER,
       references: {
-        model: 'users', 
+        model: 'users',
         key: 'id' 
       }
     },
-    DataDevolucao: {
+    DateRent: {
       type: Sequelize.DATE,
       required: false,
       allowNull: true,
-      defaultValue:null,
+      defaultValue: null,
     },    
+    RentId:
+    {
+      type: Sequelize.INTEGER,
+      required:true,
+      allowNull:false,
+
+    },
     createdAt:
     {
       type: Sequelize.DATE,
@@ -51,10 +58,10 @@ const RentalModel = sequelizeConfig.define(
     }
   },
   {
-    tableName: "Rental",
+    tableName: "History",
     freezeTableName: true,
     paranoid: true
   }
 );
 
-module.exports = { RentalModel };
+module.exports = { HistoryModel };
