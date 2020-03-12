@@ -1,5 +1,5 @@
 const express = require('express');
-const { moviesRoute,usersRoute } = require('./Routes');
+const { moviesRoute,usersRoute,rentalRoute } = require('./Routes');
 const bodyParser = require('body-parser');
 class App {
   constructor() {
@@ -20,8 +20,8 @@ class App {
 
     this.express.use('/filmes', express.Router(), moviesRoute);
     //this.express.use('/locacao', express.Router(), locacaoRoute);
-    //this.express.use('/historico', express.Router(), historicoRoute);
     this.express.use('/usuarios', express.Router(), usersRoute);
+    this.express.use('/alugar', express.Router(), rentalRoute);
   }
 }
 

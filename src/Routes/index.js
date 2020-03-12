@@ -1,10 +1,11 @@
 const moviesRoute = require('../features/Movies/moviesRoute');
 //const locacaoRoute = require('../Locacao');
-//const historicoRoute = require('../Historico');
-const usuarioRoute = require('../features/Users/usersRoute');
+const rentalRoute = require('../features/Rental/rentalRoute');
+const usersRoute = require('../features/Users/usersRoute');
 module.exports = {
   ...moviesRoute,
+  ...rentalRoute,
   //...locacaoRoute,
   //...historicoRoute,
-  ...usuarioRoute,
+  ...usersRoute,
 };
