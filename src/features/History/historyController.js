@@ -2,6 +2,7 @@ const BaseController = require('../../shared/baseController');
 const { HistoryModel } = require('./index');
 const _ = require('lodash');
 const HttpStatus = require('../shared/httpStatus')
+const HistoryUtil = require('./historyUtils');
 class HistoryController {
   constructor() {
     this.baseController = new BaseController(HistoryModel);
@@ -18,8 +19,7 @@ class HistoryController {
   async updateHistory(id, historyObj) {
     try {
       let isDeleted = await this.baseController.getById(id);
-      if(isDeleted)
-      {
+      if (isDeleted) {
         let historyObject = await this.baseController.update('Id', id, historyObj);
         return this.httpStatus.updateEntry(historyObject, true);
       }
@@ -31,17 +31,18 @@ class HistoryController {
   async getHistoryById(idHistory) {
     try {
       let historyObject = await this.baseController.getById(idHistory);
-      return this.httpStatus.getEntry(historyObject,true)
+      return this.httpStatus.getEntry(historyObject, true)
     } catch (error) {
-      throw this.httpStatus.getEntry(error,false)
+      throw this.httpStatus.getEntry(error, false)
     }
   }
   async getHistoryByQuery(query) {
     try {
       let historyObject = await this.baseController.getByFilter(query);
-      return this.httpStatus.getEntry(historyObject,true)
+      let formattedResp = await HistoryUtil.historyResponseFormatter(historyObject);
+      return this.httpStatus.getEntry(formattedResp, true)
     } catch (error) {
-      throw this.httpStatus.getEntry(error,false)
+      throw this.httpStatus.getEntry(error, false)
     }
   }
   async deleteHistoryById(idHistory) {
