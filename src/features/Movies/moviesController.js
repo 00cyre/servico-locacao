@@ -1,7 +1,7 @@
 const BaseController = require('../../shared/baseController');
 const { MoviesModel } = require('./index');
 const _ = require('lodash');
-const HttpStatus = require('../shared/httpStatus')
+const HttpStatus = require('../../shared/httpStatus')
 class MoviesController {
   constructor() {
 

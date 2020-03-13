@@ -1,7 +1,7 @@
 const BaseController = require('../../shared/baseController');
 const { HistoryModel } = require('./index');
 const _ = require('lodash');
-const HttpStatus = require('../shared/httpStatus')
+const HttpStatus = require('../../shared/httpStatus')
 const HistoryUtil = require('./historyUtils');
 class HistoryController {
   constructor() {
