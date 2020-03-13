@@ -3,7 +3,7 @@ const HistorysConstructor = require('../History/historyController');
 const { RentalModel } = require('./index');
 const { HistoryModel } = require('../History/historyModel')
 const _ = require('lodash');
-const HttpStatus = require('../shared/httpStatus')
+const HttpStatus = require('../../shared/httpStatus')
 class RentalController {
   constructor() {
     this.baseController = new BaseController(RentalModel);

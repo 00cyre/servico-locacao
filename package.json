@@ -6,6 +6,7 @@
   "scripts": {
     "initialize": "npm install & initializeSequelize.bat & nodemon --inspect ./src/index.js",
     "sql": "initializeSequelize.bat",
+    "test": "jest",
     "qs": "nodemon --inspect ./src/index.js"
   },
   "repository": {
@@ -22,8 +23,12 @@
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "lodash": "^4.17.15",
+    "moment": "^2.24.0",
     "mysql2": "^2.1.0",
     "nodemon": "^2.0.2",
     "sequelize": "^5.21.5"
+  },
+  "devDependencies": {
+    "jest": "^25.1.0"
   }
 }

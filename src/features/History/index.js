@@ -1,8 +1,8 @@
-const RentalRoute = require('./historyRoute');
-const { RentalModel } = require('./historyModel');
-const RentalController = require('./historyController');
+const HistoryRoute = require('./historyRoute');
+const { HistoryModel } = require('./historyModel');
+const HistoryController = require('./historyController');
 module.exports = {
-    RentalModel,
-    RentalRoute,
-    RentalController
+    HistoryRoute,
+    HistoryModel,
+    HistoryController
 };
